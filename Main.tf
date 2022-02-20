@@ -1,7 +1,6 @@
 provider "google" {
-  project = "firstkubernetes-176201"
-  region  = "europe-west2"
-  zone    = "europe-west2-b"
+  project = "Demo"
+  region  = "us-west2"
 }
 
 resource "google_compute_instance" "vm_instance" {
