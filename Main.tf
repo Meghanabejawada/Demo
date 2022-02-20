@@ -1,19 +1,24 @@
-provider "google" {
-  project = "Demo"
-  region  = "us-west2"
+data "aws_ami" "ubuntu" {
+most_recent = true
+
+filter {
+name = "name"
+values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
 }
 
-resource "google_compute_instance" "vm_instance" {
-  name         = "terraform-instance"
-  machine_type = "f1-micro"
+filter {
+name = "virtualization-type"
+values = ["hvm"]
+}
 
-  boot_disk {
-    initialize_params {
-      image = "debian-cloud/debian-9"
-    }
-  }
+owners = ["099720109477"] # Canonical
+}
 
-  network_interface {
-    network = "default"
-  }
+resource "aws_instance" "web" {
+ami = data.aws_ami.ubuntu.id
+instance_type = "t3.micro"
+
+tags = {
+Name = "HelloWorld"
+}
 }
