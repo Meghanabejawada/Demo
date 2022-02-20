@@ -8,7 +8,7 @@ steps:
     title: Cloning main repository...
     stage: checkout
     type: git-clone
-    repo: 'divyakarre/aws-terraform'
+    repo: 'meghanabejawda/Demo'
     revision: main
     git: github      
   SetupAuth:
